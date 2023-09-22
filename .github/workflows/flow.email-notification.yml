@@ -22,3 +22,11 @@
           run: echo "${{ github.repositoryUrl}}"
         - name: Print runner
           run: echo "${{ runner.arch }} - ${{ runner.os }} - ${{ runner.os }} - ${{ runner.temp }}"
+    secrets:
+      name: Secrets
+      runs-on: ubuntu-latest
+      steps:
+        - name: Print secrets
+          run: echo "${{ secrets.ACTIONS_SECRET }}"
+        - name: Print veriables
+          run: echo "${{ vars.ACTIONS_VERIABLE }}
