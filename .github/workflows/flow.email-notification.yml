@@ -1,0 +1,24 @@
+  name: Email notification flow
+  run-name: ${{ github.actor }} is running a ${{ github.event_name }}
+  on:
+    push:
+      branches:
+        - main
+        - develop
+  jobs:
+    checkout:
+      name: Checkout
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Set up QEMU
+          run: |
+            ls ${{ github.workspace }}
+        - name: Print repo url
+          run: echo "${{ github.repositoryUrl}}"
+        - name: Print runner
+          run: echo "${{ runner.arch }} - ${{ runner.os }} - ${{ runner.os }} - ${{ runner.temp }}"
