@@ -28,5 +28,5 @@
       steps:
         - name: Print secrets
           run: echo "${{ secrets.ACTIONS_SECRET }}"
-        - name: Print veriables
-          run: echo "${{ vars.ACTIONS_VERIABLE }}
+        - name: Print variables
+          run: echo "${{ vars.ACTIONS_VERIABLE }}"
