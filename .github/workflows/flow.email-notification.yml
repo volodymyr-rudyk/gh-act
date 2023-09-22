@@ -11,11 +11,11 @@
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-    build:
-      name: Build
+    info:
+      name: Info
       runs-on: ubuntu-latest
       steps:
-        - name: Set up QEMU
+        - name: Print info
           run: |
             ls ${{ github.workspace }}
         - name: Print repo url
