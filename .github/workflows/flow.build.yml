@@ -18,3 +18,5 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+      - name: "Java version"
+        run: java -version
