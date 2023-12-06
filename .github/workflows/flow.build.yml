@@ -7,5 +7,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Print commit sha
-        run: echo $
+      - name: Print Commit SHA
+        run: |
+          echo "Commit SHA: $GITHUB_SHA"
