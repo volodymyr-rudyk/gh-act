@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Base api gateway
+
+Parameters:
+  Prefix:
+    Type: String
+    Default: "api"
+  ResourceUser:
+    Type: String
+    Default: "user"
+
+Resources:
+  RestApiGateway:
+    Type: "AWS::ApiGateway::RestApi"
+    Version: 1.13
+    Properties:
+      #      ApiKeySourceType: HEADER
+      Name: RootGateWayName
+      Description: Test api gateway
+      FailOnWarnings: true
+      EndpointConfiguration:
+        Types:
+        - REGIONAL
+
+  RestApiGatewayResource:
+    Type: "AWS::ApiGateway::Resource"
+    Version: 1.13
+    Properties:
+      RestApiId: !Ref RestApiGateway
+      ParentId: !GetAtt RestApiGateway.RootResourceId
+      PathPart: !Ref ResourceUser
+
+  GetUser:
+    Type: "AWS::ApiGateway::Method"
+    Version: 1.13
+    Properties:
+      ApiKeyRequired: false
+      HttpMethod: GET
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 204}'
+        IntegrationResponses:
+        - StatusCode: "204"
+      MethodResponses:
+      - StatusCode: "202"
+      AuthorizationType: NONE
+      ResourceId: !Ref RestApiGatewayResource
+      RestApiId: !Ref RestApiGateway
+
+  Deployment:
+    Type: "AWS::ApiGateway::Deployment"
+    Version: 1.13
+    DependsOn:
+    - GetUser
+    Properties:
+      RestApiId: !Ref RestApiGateway
+
+  Stage:
+    Type: "AWS::ApiGateway::Stage"
+    Version: 1.13
+    Properties:
+      RestApiId: !Ref RestApiGateway
+      StageName: !Sub "${Prefix}-stage"
+      DeploymentId: !Ref Deployment
+
+Outputs:
+  RestApiGatewayID:
+    Description: Information about the value
+    Value: !Ref RestApiGateway
+    Export:
+      Name: GW-RESOURCE
+  GetUserRestEndpoint:
+    Description: Information about the value
+    Value: !Join ["", [!Sub "https://${RestApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/${ResourceUser}"]]
+    Export:
+      Name: qqq

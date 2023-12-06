@@ -20,7 +20,7 @@
           run: |
             ls ${{ github.workspace }}
         - name: Print repo url
-          run: echo "${{ github.repositoryUrl}}"
+          run: echo "${{ github.repositoryUrl }}"
         - name: Print runner
           run: echo "${{ runner.arch }} - ${{ runner.os }} - ${{ runner.os }} - ${{ runner.temp }}"
     secrets:
@@ -31,4 +31,6 @@
         - name: Print secrets
           run: echo "${{ secrets.ACTIONS_SECRET }}"
         - name: Print variables
-          run: echo "${{ vars.ACTIONS_VERIABLE }}"
+          run: echo "${{ vars.ACTIONS_VARIABLE }}"
+        - name: Print env vars
+          run: echo "${{ env.ACTIONS_SECRET }}"
