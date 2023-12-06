@@ -52,7 +52,7 @@ jobs:
           mvn -B clean package --file pom.xml
       - name: Checkstyle Maven
         run: |
-          mvn checkstyle:check --file.pom.xml
+          mvn checkstyle:check --file pom.xml
       - name: Print info workspace
         run: |
           ls ${{ github.workspace }}
