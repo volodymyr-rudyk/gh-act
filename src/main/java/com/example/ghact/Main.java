@@ -15,6 +15,11 @@ public class Main {
                  e
                  r
                  e
+                 1
+                 2
+                 3
+                 4
+                 5
                  """
                 .transform(String::toUpperCase)
                 .transform("::"::concat);
@@ -26,7 +31,7 @@ public class Main {
         while (true) {
 
             System.out.println(result);
-            Thread.sleep(2000);
+            Thread.sleep(10000);
         }
     }
 }
