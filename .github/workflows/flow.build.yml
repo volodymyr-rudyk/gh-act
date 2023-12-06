@@ -39,6 +39,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: "Java version"
+        run: echo "java -version"
+      - name: Build with Maven
+        run: |
+          mvn -B clean package --file pom.xml
+      - name: Checkstyle Maven
+        run: |
+          mvn checkstyle:check --file.pom.xml
       - name: Print info workspace
         run: |
           ls ${{ github.workspace }}
