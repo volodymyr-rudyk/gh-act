@@ -2,13 +2,19 @@ name: "Build App"
 run-name: ${{ github.actor }} is running a ${{ github.event_name }}
 on: [push]
 jobs:
+  
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: '2727d8719b713e23fb014cbaa6ce0ede7b60affc'
+        # with:
+        #   ref: '2727d8719b713e23fb014cbaa6ce0ede7b60affc'
       - name: Print Commit SHA
         run: |
           echo "Commit SHA: $GITHUB_SHA"
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'

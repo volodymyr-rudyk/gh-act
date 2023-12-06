@@ -3,6 +3,8 @@ package com.example.ghact;
 import lombok.SneakyThrows;
 
 import java.util.Arrays;
+import java.util.Random;
+
 
 public class Main {
     @SneakyThrows
@@ -28,10 +30,11 @@ public class Main {
         var result = transform;
 
 
+        System.out.println(result);
         while (true) {
-
-            System.out.println(result);
+            var value = new Random().nextInt(100);
             Thread.sleep(10000);
+            System.out.println(value);
         }
     }
 }
