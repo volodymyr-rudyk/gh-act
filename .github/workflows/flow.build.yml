@@ -18,5 +18,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+          cache: 'maven'
       - name: "Java version"
         run: echo "java -version"
+      - name: Build with Maven
+        run: mvn -B clean package --file pom.xml
+      - name: Print info
+        run: |
+          ls ${{ github.workspace }}
