@@ -32,4 +32,8 @@ jobs:
       - name: Print info target
         run: |
           ls ./target
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gh-act
+          path: ./target/gh-act*.jar
           
