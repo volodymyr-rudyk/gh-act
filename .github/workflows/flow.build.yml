@@ -26,3 +26,5 @@ jobs:
       - name: Print info
         run: |
           ls ${{ github.workspace }}
+          ls .
+          ls ./target
