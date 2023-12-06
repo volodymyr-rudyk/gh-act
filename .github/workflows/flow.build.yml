@@ -59,4 +59,18 @@ jobs:
       - name: Print info target
         run: |
           ls ./target
-      
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Test with Maven
+        run: |
+          mvn -B test --file pom.xml
