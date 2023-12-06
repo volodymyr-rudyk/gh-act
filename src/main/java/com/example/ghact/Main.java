@@ -2,13 +2,33 @@ package com.example.ghact;
 
 import lombok.SneakyThrows;
 
-import java.util.Arrays;
 import java.util.Random;
 
 
-public class Main {
+/**
+ * start pint.
+ */
+public final class Main {
+
+    /**
+     * Timeout variable.
+     */
+    public static final int TIMEOUT = 100;
+    /**
+     * sleep variable.
+     */
+    public static final int SLEEP = 10000;
+
+    private Main() {
+
+    }
+
+    /**
+     * run.
+     * @param args
+     */
     @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         var transform = """
                 H
                 i
@@ -32,8 +52,8 @@ public class Main {
 
         System.out.println(result);
         while (true) {
-            var value = new Random().nextInt(100);
-            Thread.sleep(10000);
+            var value = new Random().nextInt(TIMEOUT);
+            Thread.sleep(SLEEP);
             System.out.println(value);
         }
     }
